@@ -12,6 +12,8 @@ public class UserDao {
 		List<UserDomain> list = new ArrayList<>();
 		UserDomain user = new UserDomain(1L, "山田　太郎", false);
 		list.add(user);
+		UserDomain user2 = new UserDomain(2L, "川田　二郎", false);
+		list.add(user2);
 		return list;
 	}
 }

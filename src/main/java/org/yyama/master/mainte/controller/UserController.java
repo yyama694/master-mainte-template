@@ -18,7 +18,7 @@ public class UserController {
 		return "user-list";
 	}
 
-	@PostMapping("/user/detail")
+	@GetMapping("/user/detail")
 	public String userDetail(Model model) {
 		return "user-detail";
 	}
