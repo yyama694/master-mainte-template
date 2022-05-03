@@ -16,4 +16,9 @@ public class UserDao {
 		list.add(user2);
 		return list;
 	}
+
+	public UserDomain getUserById(Long id) {
+		UserDomain user = new UserDomain(1L, "山田　太郎", false);
+		return user;
+	}
 }

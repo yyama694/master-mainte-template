@@ -16,4 +16,11 @@ public class UserService {
 		return userDao.getAll();
 	}
 
+	public UserDomain getUserById(Long id) {
+		return userDao.getUserById(id);
+	}
+
+	public void deleteUserById(Long id) {
+	}
+
 }

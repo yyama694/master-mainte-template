@@ -5,6 +5,12 @@
     <title>ユーザ変更ン</title>
 </head>
 <body>
-ユーザ変更
+<form action="#" th:action="@{/user/modify/confirm}" method="post" th:object="${user}">
+<div>ID：<input type="text" th:field="*{id}" value="999"></div>
+<div>ユーザ名：<input type="text" th:field="*{name}" value="テスト名"></div>
+<div>管理者：<input type="text" th:field="*{administrator}" value="false"></div>
+<div><a href="user-modify.html" th:href="@{/user/detail(id=${user.id})}">戻る</a>
+     <input type="submit" value="変更確認"></div>
+</form>
 </body>
 </html>
