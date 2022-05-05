@@ -8,17 +8,35 @@ import org.yyama.master.mainte.domain.UserDomain;
 
 @Component
 public class UserDao {
-	public List<UserDomain> getAll() {
-		List<UserDomain> list = new ArrayList<>();
+	public static final List<UserDomain> users;
+	static {
+		users = new ArrayList<>();
 		UserDomain user = new UserDomain(1L, "山田　太郎", false);
-		list.add(user);
+		users.add(user);
 		UserDomain user2 = new UserDomain(2L, "川田　二郎", false);
-		list.add(user2);
-		return list;
+		users.add(user2);
+	}
+
+	public List<UserDomain> getAll() {
+		return users;
 	}
 
 	public UserDomain getUserById(Long id) {
-		UserDomain user = new UserDomain(1L, "山田　太郎", false);
-		return user;
+		for (UserDomain userDomain : users) {
+			if (id == userDomain.getId()) {
+				return userDomain;
+			}
+		}
+		return null;
+	}
+
+	public void modify(UserDomain user) {
+		for (UserDomain userDomain : users) {
+			if (user.getId() == userDomain.getId()) {
+				users.remove(userDomain);
+				break;
+			}
+		}
+		users.add(user);
 	}
 }

@@ -23,4 +23,8 @@ public class UserService {
 	public void deleteUserById(Long id) {
 	}
 
+	public void modify(UserDomain user) {
+		userDao.modify(user);
+	}
+
 }
