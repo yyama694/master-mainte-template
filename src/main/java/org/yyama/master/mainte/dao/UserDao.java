@@ -39,4 +39,25 @@ public class UserDao {
 		}
 		users.add(user);
 	}
+
+	public void delete(Long id) {
+		for (UserDomain userDomain : users) {
+			if (id == userDomain.getId()) {
+				users.remove(userDomain);
+				break;
+			}
+		}		
+	}
+
+	public long maxId() {
+		long max=0;
+		for (UserDomain userDomain : users) {
+			max=Math.max(max, userDomain.getId());
+		}
+		return ++max;
+	}
+
+	public void entry(UserDomain user) {
+		users.add(user);
+	}
 }

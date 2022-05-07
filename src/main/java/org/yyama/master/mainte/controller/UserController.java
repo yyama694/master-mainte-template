@@ -27,21 +27,30 @@ public class UserController {
 		return "user-detail";
 	}
 
-	@PostMapping("/user/entry")
-	public String userEntry(Model model) {
+	@GetMapping("/user/entry")
+	public String userEntry(@ModelAttribute UserDomain user, Model model) {
+		if (user.getName() == null) {
+			model.addAttribute("user", userService.newUser());
+		} else {
+			model.addAttribute("user", user);
+		}
 		return "user-entry";
 	}
 
 	@PostMapping("/user/entry/confirm")
-	public String userEntryConfirm(Model model) {
+	public String userEntryConfirm(@ModelAttribute UserDomain user, Model model) {
+		model.addAttribute("user", user);
 		return "user-entry-confirm";
+	}
+
+	@PostMapping("/user/entry/complete")
+	public String userEntryComplete(@ModelAttribute UserDomain user, Model model) {
+		userService.entryComplete(user);
+		return "redirect:/user/list";
 	}
 
 	@GetMapping("/user/modify")
 	public String userModify(@ModelAttribute UserDomain user, Model model) {
-		System.out.println(user.getId());
-		System.out.println(user.getName());
-		System.out.println(user.getAdministrator());
 		if (user.getName() == null) {
 			model.addAttribute("user", userService.getUserById(user.getId()));
 		} else {
@@ -64,7 +73,13 @@ public class UserController {
 
 	@GetMapping("/user/delete")
 	public String userDelete(Model model, @RequestParam(name = "id") Long id) {
-		userService.deleteUserById(id);
+		model.addAttribute("user", userService.getUserById(id));
+		return "user-delete-confirm";
+	}
+
+	@PostMapping("/user/delete/complete")
+	public String userDeleteComplete(@ModelAttribute UserDomain user, Model model) {
+		userService.deleteUserById(user.getId());
 		return "redirect:/user/list";
 	}
 

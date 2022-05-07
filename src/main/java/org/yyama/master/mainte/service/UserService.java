@@ -21,10 +21,19 @@ public class UserService {
 	}
 
 	public void deleteUserById(Long id) {
+		userDao.delete(id);
 	}
 
 	public void modify(UserDomain user) {
 		userDao.modify(user);
+	}
+
+	public UserDomain newUser() {
+		return new UserDomain(userDao.maxId(), null, false);
+	}
+
+	public void entryComplete(UserDomain user) {
+		userDao.entry(user);
 	}
 
 }
