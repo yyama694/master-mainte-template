@@ -5,14 +5,15 @@
     <title>ユーザ変更確認</title>
 </head>
 <body>
-<div>ID：<span th:text="${user.id}">999</span></div>
-<div>ユーザ名：<span th:text="${user.name}">テスト名</span></div>
-<div>管理者：<span th:text="${user.administrator}">false</span></div>
-<form action="#" th:action="@{/user/modify/complete}" method="post" th:object="${user}">
+<div>変更します。よろしいですか？</div>
+<div>ID：<span th:text="${userDomain.id}">999</span></div>
+<div>ユーザ名：<span th:text="${userDomain.name}">テスト名</span></div>
+<div>管理者：<span th:text="${userDomain.administrator}">false</span></div>
+<form action="#" th:action="@{/user/modify/complete}" method="post" th:object="${userDomain}">
 <input type="hidden" th:field="*{id}">
 <input type="hidden" th:field="*{name}">
 <input type="hidden" th:field="*{administrator}">
-<div><a href="user-modify.html" th:href="@{/user/modify(id=${user.id},name=${user.name},administrator=${user.administrator})}">戻る</a>
+<div><a href="user-modify.html" th:href="@{/user/modify(id=${userDomain.id},name=${userDomain.name},administrator=${userDomain.administrator})}">戻る</a>
      <input type="submit" value="変更"></div>
 </form>
 </body>

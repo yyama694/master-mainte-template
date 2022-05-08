@@ -5,10 +5,10 @@
     <title>ユーザ登録</title>
 </head>
 <body>
-<form action="#" th:action="@{/user/entry/confirm}" method="post" th:object="${user}">
+<form action="#" th:action="@{/user/entry/confirm}" method="post" th:object="${userDomain}">
 <div>ID：<span th:text="*{id}">999</span></div>
 <input type="hidden" th:field="*{id}" value="999">
-<div>ユーザ名：<input type="text" th:field="*{name}" value="テスト名"></div>
+<div>ユーザ名：<input type="text" th:field="*{name}" value="テスト名"><span id="name-errors" th:errors="*{name}"></span></div>
 <div>管理者：
   <input type="radio" th:field="*{administrator}" value="true"/>
   <label th:for="${#ids.prev('administrator')}" th:text="true"></label>

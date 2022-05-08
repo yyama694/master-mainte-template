@@ -1,7 +1,10 @@
 package org.yyama.master.mainte.domain;
 
+import javax.validation.constraints.Size;
+
 public class UserDomain {
 	private final Long id;
+	@Size(min = 1,max = 20)
 	private final String name;
 	private final Boolean administrator;
 

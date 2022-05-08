@@ -3,6 +3,8 @@ package org.yyama.master.mainte.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,18 +30,21 @@ public class UserController {
 	}
 
 	@GetMapping("/user/entry")
-	public String userEntry(@ModelAttribute UserDomain user, Model model) {
-		if (user.getName() == null) {
-			model.addAttribute("user", userService.newUser());
+	public String userEntry(@ModelAttribute UserDomain userDomain, Model model) {
+		if (userDomain.getName() == null) {
+			model.addAttribute("userDomain", userService.newUser());
 		} else {
-			model.addAttribute("user", user);
+			model.addAttribute("userDomain", userDomain);
 		}
 		return "user-entry";
 	}
 
 	@PostMapping("/user/entry/confirm")
-	public String userEntryConfirm(@ModelAttribute UserDomain user, Model model) {
-		model.addAttribute("user", user);
+	public String userEntryConfirm(@Validated UserDomain userDomain, BindingResult result, Model model) {
+		model.addAttribute("userDomain", userDomain);
+		if (result.hasErrors()) {
+			return "user-entry";
+		}
 		return "user-entry-confirm";
 	}
 
@@ -50,24 +55,27 @@ public class UserController {
 	}
 
 	@GetMapping("/user/modify")
-	public String userModify(@ModelAttribute UserDomain user, Model model) {
-		if (user.getName() == null) {
-			model.addAttribute("user", userService.getUserById(user.getId()));
+	public String userModify(@ModelAttribute UserDomain userDomain, Model model) {
+		if (userDomain.getName() == null) {
+			model.addAttribute("userDomain", userService.getUserById(userDomain.getId()));
 		} else {
-			model.addAttribute("user", user);
+			model.addAttribute("userDomain", userDomain);
 		}
 		return "user-modify";
 	}
 
 	@PostMapping("/user/modify/confirm")
-	public String userModifyConfirm(@ModelAttribute UserDomain user, Model model) {
-		model.addAttribute("user", user);
+	public String userModifyConfirm(@Validated UserDomain userDomain, BindingResult result, Model model) {
+		model.addAttribute("userDomain", userDomain);
+		if (result.hasErrors()) {
+			return "user-modify";
+		}		
 		return "user-modify-confirm";
 	}
 
 	@PostMapping("/user/modify/complete")
-	public String userModifyComplete(@ModelAttribute UserDomain user, Model model) {
-		userService.modify(user);
+	public String userModifyComplete(@ModelAttribute UserDomain userDomain, Model model) {
+		userService.modify(userDomain);
 		return "redirect:/user/list";
 	}
 

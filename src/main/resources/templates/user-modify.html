@@ -2,20 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
-    <title>ユーザ変更ン</title>
+    <title>ユーザ変更</title>
 </head>
 <body>
-<form action="#" th:action="@{/user/modify/confirm}" method="post" th:object="${user}">
+<form action="#" th:action="@{/user/modify/confirm}" method="post" th:object="${userDomain}">
 <div>ID：<span th:text="*{id}">999</span></div>
 <input type="hidden" th:field="*{id}" value="999">
-<div>ユーザ名：<input type="text" th:field="*{name}" value="テスト名"></div>
+<div>ユーザ名：<input type="text" th:field="*{name}" value="テスト名"><span id="name-errors" th:errors="*{name}"></span></div>
 <div>管理者：
   <input type="radio" th:field="*{administrator}" value="true"/>
   <label th:for="${#ids.prev('administrator')}" th:text="true"></label>
   <input type="radio" th:field="*{administrator}" value="false"/>
   <label th:for="${#ids.prev('administrator')}" th:text="false"></label>
 </div>
-<div><a href="user-modify.html" th:href="@{/user/detail(id=${user.id})}">戻る</a>
+<div><a href="user-modify.html" th:href="@{/user/detail(id=${userDomain.id})}">戻る</a>
      <input type="submit" value="変更確認"></div>
 </form>
 </body>
