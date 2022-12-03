@@ -4,7 +4,7 @@ import javax.validation.constraints.Size;
 
 public class UserDomain {
 	private final Long id;
-	@Size(min = 1,max = 20)
+	@Size(min = 1, max = 20)
 	private final String name;
 	private final Boolean administrator;
 
@@ -25,5 +25,10 @@ public class UserDomain {
 
 	public Boolean getAdministrator() {
 		return administrator;
+	}
+
+	@Override
+	public String toString() {
+		return "id:" + id + "," + " name:" + name + "," + " administrator:" + administrator;
 	}
 }

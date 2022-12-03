@@ -1,5 +1,7 @@
 package org.yyama.master.mainte.controller;
 
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,13 +20,13 @@ public class UserController {
 	UserService userService;
 
 	@GetMapping("/user/list")
-	public String user_list(Model model) {
+	public String user_list(Model model) throws SQLException {
 		model.addAttribute("users", userService.getUsers());
 		return "user-list";
 	}
 
 	@GetMapping("/user/detail")
-	public String userDetail(Model model, @RequestParam(name = "id") Long id) {
+	public String userDetail(Model model, @RequestParam(name = "id") Long id) throws SQLException {
 		model.addAttribute("user", userService.getUserById(id));
 		return "user-detail";
 	}
@@ -55,7 +57,7 @@ public class UserController {
 	}
 
 	@GetMapping("/user/modify")
-	public String userModify(@ModelAttribute UserDomain userDomain, Model model) {
+	public String userModify(@ModelAttribute UserDomain userDomain, Model model) throws SQLException {
 		if (userDomain.getName() == null) {
 			model.addAttribute("userDomain", userService.getUserById(userDomain.getId()));
 		} else {
@@ -80,7 +82,7 @@ public class UserController {
 	}
 
 	@GetMapping("/user/delete")
-	public String userDelete(Model model, @RequestParam(name = "id") Long id) {
+	public String userDelete(Model model, @RequestParam(name = "id") Long id) throws SQLException {
 		model.addAttribute("user", userService.getUserById(id));
 		return "user-delete-confirm";
 	}

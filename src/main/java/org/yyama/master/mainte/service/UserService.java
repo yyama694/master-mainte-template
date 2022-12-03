@@ -1,5 +1,6 @@
 package org.yyama.master.mainte.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,11 @@ public class UserService {
 	@Autowired
 	UserDao userDao;
 
-	public List<UserDomain> getUsers() {
+	public List<UserDomain> getUsers() throws SQLException {
 		return userDao.getAll();
 	}
 
-	public UserDomain getUserById(Long id) {
+	public UserDomain getUserById(Long id) throws SQLException {
 		return userDao.getUserById(id);
 	}
 
