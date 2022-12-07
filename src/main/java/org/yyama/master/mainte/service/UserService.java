@@ -21,19 +21,19 @@ public class UserService {
 		return userDao.getUserById(id);
 	}
 
-	public void deleteUserById(Long id) {
+	public void deleteUserById(Long id) throws SQLException {
 		userDao.delete(id);
 	}
 
-	public void modify(UserDomain user) {
+	public void modify(UserDomain user) throws SQLException {
 		userDao.modify(user);
 	}
 
-	public UserDomain newUser() {
+	public UserDomain newUser() throws SQLException {
 		return new UserDomain(userDao.maxId(), null, false);
 	}
 
-	public void entryComplete(UserDomain user) {
+	public void entryComplete(UserDomain user) throws SQLException {
 		userDao.entry(user);
 	}
 

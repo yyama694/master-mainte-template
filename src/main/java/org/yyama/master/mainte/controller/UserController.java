@@ -32,7 +32,7 @@ public class UserController {
 	}
 
 	@GetMapping("/user/entry")
-	public String userEntry(@ModelAttribute UserDomain userDomain, Model model) {
+	public String userEntry(@ModelAttribute UserDomain userDomain, Model model) throws SQLException {
 		if (userDomain.getName() == null) {
 			model.addAttribute("userDomain", userService.newUser());
 		} else {
@@ -51,7 +51,7 @@ public class UserController {
 	}
 
 	@PostMapping("/user/entry/complete")
-	public String userEntryComplete(@ModelAttribute UserDomain user, Model model) {
+	public String userEntryComplete(@ModelAttribute UserDomain user, Model model) throws SQLException {
 		userService.entryComplete(user);
 		return "redirect:/user/list";
 	}
@@ -76,7 +76,7 @@ public class UserController {
 	}
 
 	@PostMapping("/user/modify/complete")
-	public String userModifyComplete(@ModelAttribute UserDomain userDomain, Model model) {
+	public String userModifyComplete(@ModelAttribute UserDomain userDomain, Model model) throws SQLException {
 		userService.modify(userDomain);
 		return "redirect:/user/list";
 	}
@@ -88,7 +88,7 @@ public class UserController {
 	}
 
 	@PostMapping("/user/delete/complete")
-	public String userDeleteComplete(@ModelAttribute UserDomain user, Model model) {
+	public String userDeleteComplete(@ModelAttribute UserDomain user, Model model) throws SQLException {
 		userService.deleteUserById(user.getId());
 		return "redirect:/user/list";
 	}

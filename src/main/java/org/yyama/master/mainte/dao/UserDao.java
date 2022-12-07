@@ -17,6 +17,11 @@ public class UserDao {
 	private static final String URL = "jdbc:sqlite:D:\\opt\\sqlite\\sqlite-tools-win32-x86-3400000\\test1.db";
 	private static final String SELECT_ALL = "select * from user;";
 	private static final String SELECT_USER_BY_ID = "select * from user where id = ?;";
+	private static final String MODIFY_USER_BY_ID = "update user set name = ?, is_administrator =? where id = ?;";
+	private static final String DELETE_USER_BY_ID = "delete from user where id = ?;";
+	private static final String GET_MAX_ID = "select max(id) from user;";
+	private static final String INSERT = "insert into user values(?,?,?);";
+	
 
 	private static Connection conn;
 
@@ -53,34 +58,33 @@ public class UserDao {
 		return u;
 	}
 
-	public void modify(UserDomain user) {
-//		for (UserDomain userDomain : users) {
-//			if (user.getId() == userDomain.getId()) {
-//				users.remove(userDomain);
-//				break;
-//			}
-//		}
-//		users.add(user);
+	public void modify(UserDomain user) throws SQLException {
+		PreparedStatement ps = conn.prepareStatement(MODIFY_USER_BY_ID);
+		ps.setString(1, user.getName());
+		ps.setString(2, user.getAdministrator().toString());
+		ps.setLong(3, user.getId());
+		ps.execute();
 	}
 
-	public void delete(Long id) {
-//		for (UserDomain userDomain : users) {
-//			if (id == userDomain.getId()) {
-//				users.remove(userDomain);
-//				break;
-//			}
-//		}
+	public void delete(Long id) throws SQLException {
+		PreparedStatement ps = conn.prepareStatement(DELETE_USER_BY_ID);
+		ps.setLong(1, id);
+		ps.execute();		
 	}
 
-	public long maxId() {
+	public long maxId() throws SQLException {
 		long max = 0;
-//		for (UserDomain userDomain : users) {
-//			max = Math.max(max, userDomain.getId());
-//		}
+		PreparedStatement ps = conn.prepareStatement(GET_MAX_ID);
+		ResultSet rs = ps.executeQuery();
+		max = rs.getLong(1);
 		return ++max;
 	}
 
-	public void entry(UserDomain user) {
-//		users.add(user);
+	public void entry(UserDomain user) throws SQLException {
+		PreparedStatement ps = conn.prepareStatement(INSERT);
+		ps.setLong(1, user.getId());
+		ps.setString(2, user.getName());
+		ps.setString(3, user.getAdministrator().toString());		
+		ps.execute();		
 	}
 }
