@@ -14,7 +14,7 @@ import org.yyama.master.mainte.domain.UserDomain;
 @Component
 public class UserDao {
 
-	private static final String URL = "jdbc:sqlite:D:\\opt\\sqlite\\sqlite-tools-win32-x86-3400000\\test1.db";
+	private static final String URL = "jdbc:sqlite:.\\test1.db";
 	private static final String SELECT_ALL = "select * from user;";
 	private static final String SELECT_USER_BY_ID = "select * from user where id = ?;";
 	private static final String MODIFY_USER_BY_ID = "update user set name = ?, is_administrator =? where id = ?;";
