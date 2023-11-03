@@ -8,18 +8,29 @@
 </head>
 
 <body>
-	<form action="#" th:action="@{/user/entry/confirm}" method="post" th:object="${userDomain}">
-		<div>ID：<span th:text="*{id}">999</span></div>
-		<input type="hidden" th:field="*{id}" value="999">
-		<div>ユーザ名：<input type="text" th:field="*{name}" value="テスト名"><span id="name-errors" th:errors="*{name}" class="error-message"></span>
-		</div>
-		<div>管理者：
-			<input type="radio" th:field="*{administrator}" value="true" />
-			<label th:for="${#ids.prev('administrator')}" th:text="true"></label>
-			<input type="radio" th:field="*{administrator}" value="false" />
-			<label th:for="${#ids.prev('administrator')}" th:text="false"></label>
-		</div>
-		<div><a href="/user/list">戻る</a>
+	<form class="user-form" action="#" th:action="@{/user/entry/confirm}" method="post" th:object="${userDomain}">
+		<h1 class="form-title">ユーザ登録</h1>
+		<table>
+			<tr>
+				<th>ID</th>
+				<td><span th:text="*{id}">999</span><input type="hidden" th:field="*{id}" value="999"></td>
+			</tr>
+			<tr>
+				<th>ユーザ名</td>
+				<td><div id="name-errors" th:errors="*{name}"	class="error-message"></div><input type="text" th:field="*{name}" value="テスト名"></td>
+			</tr>
+			<tr>
+				<th>管理者</td>
+				<td>
+					<input type="radio" th:field="*{administrator}" value="true" />
+					<label th:for="${#ids.prev('administrator')}" th:text="true"></label>
+					<input type="radio" th:field="*{administrator}" value="false" />
+					<label th:for="${#ids.prev('administrator')}" th:text="false"></label>
+				</td>
+			</tr>
+		</table>
+		<div class="under-items">
+			<a href="/user/list">戻る</a>
 			<input type="submit" value="登録確認">
 		</div>
 	</form>
