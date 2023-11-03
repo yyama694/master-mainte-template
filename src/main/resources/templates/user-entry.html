@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="utf-8" />
-    <title>ユーザ登録</title>
+	<meta charset="utf-8" />
+	<title>ユーザ登録</title>
+	<style>
+		.error-message {
+			color: red;
+			font-weight: bold;
+		}
+	</style>
 </head>
+
 <body>
-<form action="#" th:action="@{/user/entry/confirm}" method="post" th:object="${userDomain}">
-<div>ID：<span th:text="*{id}">999</span></div>
-<input type="hidden" th:field="*{id}" value="999">
-<div>ユーザ名：<input type="text" th:field="*{name}" value="テスト名"><span id="name-errors" th:errors="*{name}"></span></div>
-<div>管理者：
-  <input type="radio" th:field="*{administrator}" value="true"/>
-  <label th:for="${#ids.prev('administrator')}" th:text="true"></label>
-  <input type="radio" th:field="*{administrator}" value="false"/>
-  <label th:for="${#ids.prev('administrator')}" th:text="false"></label>
-</div>
-<div><a href="/user/list">戻る</a>
-     <input type="submit" value="登録確認"></div>
-</form>
+	<form action="#" th:action="@{/user/entry/confirm}" method="post" th:object="${userDomain}">
+		<div>ID：<span th:text="*{id}">999</span></div>
+		<input type="hidden" th:field="*{id}" value="999">
+		<div>ユーザ名：<input type="text" th:field="*{name}" value="テスト名"><span id="name-errors" th:errors="*{name}" class="error-message"></span>
+		</div>
+		<div>管理者：
+			<input type="radio" th:field="*{administrator}" value="true" />
+			<label th:for="${#ids.prev('administrator')}" th:text="true"></label>
+			<input type="radio" th:field="*{administrator}" value="false" />
+			<label th:for="${#ids.prev('administrator')}" th:text="false"></label>
+		</div>
+		<div><a href="/user/list">戻る</a>
+			<input type="submit" value="登録確認">
+		</div>
+	</form>
 </body>
+
 </html>
