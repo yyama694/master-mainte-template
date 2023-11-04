@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="utf-8" />
-    <title>ユーザ登録確認</title>
+	<meta charset="utf-8" />
+	<title>ユーザ登録確認</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
+
 <body>
-<div>登録します。よろしいですか？</div>
-<div>ID：<span th:text="${userDomain.id}">999</span></div>
-<div>ユーザ名：<span th:text="${userDomain.name}">テスト名</span></div>
-<div>管理者：<span th:text="${userDomain.administrator}">false</span></div>
-<form action="#" th:action="@{/user/entry/complete}" method="post" th:object="${userDomain}">
-<input type="hidden" th:field="*{id}">
-<input type="hidden" th:field="*{name}">
-<input type="hidden" th:field="*{administrator}">
-<div><a href="user-modify.html" th:href="@{/user/entry(id=${userDomain.id},name=${userDomain.name},administrator=${userDomain.administrator})}">戻る</a>
-     <input type="submit" value="登録"></div>
-</form>
+	<h1>ユーザ登録確認</h1>
+	<div>登録します。よろしいですか？</div>
+	<table>
+		<tr>
+			<th>ID</th>
+			<td><span th:text="${userDomain.id}">999</span></td>
+		</tr>
+		<tr>
+			<th>ユーザ名</th>
+			<td><span th:text="${userDomain.name}">テスト名</span></td>
+		</tr>
+		<tr>
+			<th>管理者</th>
+			<td><span th:text="${userDomain.administrator}">false</span></td>
+		</tr>
+	</table>
+	<form action="#" th:action="@{/user/entry/complete}" method="post" th:object="${userDomain}" class="under-items">
+		<input type="hidden" th:field="*{id}">
+		<input type="hidden" th:field="*{name}">
+		<input type="hidden" th:field="*{administrator}">
+		<div><a href="user-modify.html"
+				th:href="@{/user/entry(id=${userDomain.id},name=${userDomain.name},administrator=${userDomain.administrator})}">戻る</a>
+			<input type="submit" value="登録">
+		</div>
+	</form>
 </body>
+
 </html>

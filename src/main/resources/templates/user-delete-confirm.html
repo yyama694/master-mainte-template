@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="utf-8" />
-    <title>ユーザ削除確認</title>
+	<meta charset="utf-8" />
+	<title>ユーザ削除確認</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
+
 <body>
-<div>削除します。よろしいですか？</div>
-<div>ID：<span th:text="${user.id}">999</span></div>
-<div>ユーザ名：<span th:text="${user.name}">テスト名</span></div>
-<div>管理者：<span th:text="${user.administrator}">false</span></div>
-<form action="#" th:action="@{/user/delete/complete}" method="post" th:object="${user}">
-<input type="hidden" th:field="*{id}">
-<input type="hidden" th:field="*{name}">
-<input type="hidden" th:field="*{administrator}">
-<div><a href="user-modify.html" th:href="@{/user/detail(id=${user.id})}">戻る</a>
-     <input type="submit" value="削除"></div>
-</form>
+	<h1>ユーザ削除確認</h1>
+	<div>削除します。よろしいですか？</div>
+	<table>
+		<tr>
+			<th>ID</th>
+			<td><span th:text="${user.id}">999</span></td>
+		</tr>
+		<tr>
+			<th>ユーザ名</th>
+			<td><span th:text="${user.name}">テスト名</span></td>
+		</tr>
+		<tr>
+			<th>管理者</th>
+			<td><span th:text="${user.administrator}">false</span></td>
+		</tr>
+	</table>
+	<form action="#" th:action="@{/user/delete/complete}" method="post" th:object="${user}" 　class="under-items">
+		<input type="hidden" th:field="*{id}">
+		<input type="hidden" th:field="*{name}">
+		<input type="hidden" th:field="*{administrator}">
+		<div><a href="user-modify.html" th:href="@{/user/detail(id=${user.id})}">戻る</a>
+			<input type="submit" value="削除">
+		</div>
+	</form>
 </body>
+
 </html>

@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="utf-8" />
-    <title>ユーザ詳細</title>
+	<meta charset="utf-8" />
+	<title>ユーザ詳細</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
+
 <body>
-<div>ID：<span th:text="${user.id}">999</span></div>
-<div>ユーザ名：<span th:text="${user.name}">テスト名</span></div>
-<div>管理者：<span th:text="${user.administrator}">false</span></div>
-<div><a href="user-modify.html" th:href="@{/user/list}">ユーザ一覧へ</a>
-     <a href="user-modify.html" th:href="@{/user/modify(id=${user.id})}">変更</a>
-     <a href="user-modify.html" th:href="@{/user/delete(id=${user.id})}">削除</a></div>
+	<h1>ユーザ詳細</h1>
+	<table>
+		<tr>
+			<th>ID</th>
+			<td><span th:text="${user.id}">999</span></td>
+		</tr>
+		<tr>
+			<th>ユーザ名</th>
+			<td><span th:text="${user.name}">テスト名</span></td>
+		</tr>
+		<tr>
+			<th>管理者</th>
+			<td><span th:text="${user.administrator}">false</span></td>
+		</tr>
+	</table>
+	<div class="under-items"><a href="user-modify.html" th:href="@{/user/list}">ユーザ一覧へ</a>
+		<a href="user-modify.html" th:href="@{/user/modify(id=${user.id})}">変更</a>
+		<a href="user-modify.html" th:href="@{/user/delete(id=${user.id})}">削除</a>
+	</div>
 </body>
+
 </html>
