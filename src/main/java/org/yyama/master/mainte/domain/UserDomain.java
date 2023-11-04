@@ -9,7 +9,6 @@ public class UserDomain {
 	private final Boolean administrator;
 
 	public UserDomain(Long id, String name, Boolean administrator) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.administrator = administrator;

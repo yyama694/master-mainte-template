@@ -33,7 +33,7 @@ public class UserService {
 		return new UserDomain(userDao.maxId() + 1, null, false);
 	}
 
-	public void entryComplete(UserDomain user) throws SQLException {
+	public void entry(UserDomain user) throws SQLException {
 		userDao.entry(user);
 	}
 

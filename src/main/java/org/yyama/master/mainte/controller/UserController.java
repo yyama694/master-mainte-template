@@ -52,7 +52,7 @@ public class UserController {
 
 	@PostMapping("/user/entry/complete")
 	public String userEntryComplete(@ModelAttribute UserDomain user, Model model) throws SQLException {
-		userService.entryComplete(user);
+		userService.entry(user);
 		return "redirect:/user/list";
 	}
 
