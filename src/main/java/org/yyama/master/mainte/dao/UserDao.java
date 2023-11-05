@@ -14,10 +14,10 @@ public interface UserDao {
 
 	public void delete(long id);
 
-	public void modify(UserDomain user);
+	public void modify(UserDomain userDomain);
 	
 	public long maxId();
 	
-	public void entry(UserDomain user);
+	public void entry(UserDomain userDomain);
 	
 }

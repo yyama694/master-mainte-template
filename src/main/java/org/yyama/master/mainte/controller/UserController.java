@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.yyama.master.mainte.domain.UserDomain;
+import org.yyama.master.mainte.dto.UserFormDto;
 import org.yyama.master.mainte.service.UserService;
 
 @Controller
@@ -32,18 +32,18 @@ public class UserController {
 	}
 
 	@GetMapping("/user/entry")
-	public String userEntry(@ModelAttribute UserDomain userDomain, Model model) throws SQLException {
-		if (userDomain.getName() == null) {
-			model.addAttribute("userDomain", userService.newUser());
+	public String userEntry(@ModelAttribute UserFormDto userFormDto, Model model) throws SQLException {
+		if (userFormDto.getName() == null) {
+			model.addAttribute("userFormDto", userService.newUser());
 		} else {
-			model.addAttribute("userDomain", userDomain);
+			model.addAttribute("userFormDto", userFormDto);
 		}
 		return "user-entry";
 	}
 
 	@PostMapping("/user/entry/confirm")
-	public String userEntryConfirm(@Validated UserDomain userDomain, BindingResult result, Model model) {
-		model.addAttribute("userDomain", userDomain);
+	public String userEntryConfirm(@Validated UserFormDto userFormDto, BindingResult result, Model model) {
+		model.addAttribute("userFormDto", userFormDto);
 		if (result.hasErrors()) {
 			return "user-entry";
 		}
@@ -51,24 +51,24 @@ public class UserController {
 	}
 
 	@PostMapping("/user/entry/complete")
-	public String userEntryComplete(@ModelAttribute UserDomain user, Model model) throws SQLException {
-		userService.entry(user);
+	public String userEntryComplete(@ModelAttribute UserFormDto userFormDto, Model model) throws SQLException {
+		userService.entry(userFormDto);
 		return "redirect:/user/list";
 	}
 
 	@GetMapping("/user/modify")
-	public String userModify(@ModelAttribute UserDomain userDomain, Model model) throws SQLException {
-		if (userDomain.getName() == null) {
-			model.addAttribute("userDomain", userService.getUserById(userDomain.getId()));
+	public String userModify(@ModelAttribute UserFormDto userFormDto, Model model) throws SQLException {
+		if (userFormDto.getName() == null) {
+			model.addAttribute("userFormDto", userService.getUserById(userFormDto.getId()));
 		} else {
-			model.addAttribute("userDomain", userDomain);
+			model.addAttribute("userFormDto", userFormDto);
 		}
 		return "user-modify";
 	}
 
 	@PostMapping("/user/modify/confirm")
-	public String userModifyConfirm(@Validated UserDomain userDomain, BindingResult result, Model model) {
-		model.addAttribute("userDomain", userDomain);
+	public String userModifyConfirm(@Validated UserFormDto userFormDto , BindingResult result, Model model) {
+		model.addAttribute("userFormDto", userFormDto);
 		if (result.hasErrors()) {
 			return "user-modify";
 		}		
@@ -76,8 +76,8 @@ public class UserController {
 	}
 
 	@PostMapping("/user/modify/complete")
-	public String userModifyComplete(@ModelAttribute UserDomain userDomain, Model model) throws SQLException {
-		userService.modify(userDomain);
+	public String userModifyComplete(@ModelAttribute UserFormDto userFormDto, Model model) throws SQLException {
+		userService.modify(userFormDto);
 		return "redirect:/user/list";
 	}
 
@@ -88,8 +88,8 @@ public class UserController {
 	}
 
 	@PostMapping("/user/delete/complete")
-	public String userDeleteComplete(@ModelAttribute UserDomain user, Model model) throws SQLException {
-		userService.deleteUserById(user.getId());
+	public String userDeleteComplete(@ModelAttribute UserFormDto userFormDto, Model model) throws SQLException {
+		userService.deleteUserById(userFormDto.getId());
 		return "redirect:/user/list";
 	}
 

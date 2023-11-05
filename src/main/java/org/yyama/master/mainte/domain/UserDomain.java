@@ -1,10 +1,13 @@
 package org.yyama.master.mainte.domain;
 
-import jakarta.validation.constraints.Size;
-
+/*
+ * このシステムにおいてUserDomainとUserFormDtoは分ける必要性を感じられないが、
+ * 多少複雑なシステムになると画面のフォーム受け取り用DTOのプロパティと、
+ * ドメインのプロパティが必ずしも一致しない（むしろ一致する方が珍しいかも）ので
+ * 明示的に分けた。
+ */
 public class UserDomain {
 	private final Long id;
-	@Size(min = 1, max = 20, message = "{user.name.length}")
 	private final String name;
 	private final Boolean administrator;
 
