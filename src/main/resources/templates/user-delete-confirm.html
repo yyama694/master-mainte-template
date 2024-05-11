@@ -24,7 +24,7 @@
 			<td><span th:text="${user.administrator}">false</span></td>
 		</tr>
 	</table>
-	<form action="#" th:action="@{/user/delete/complete}" method="post" th:object="${user}" 　class="under-items">
+	<form action="#" th:action="@{/user/delete/complete}" method="post" th:object="${user}" class="under-items">
 		<input type="hidden" th:field="*{id}">
 		<input type="hidden" th:field="*{name}">
 		<input type="hidden" th:field="*{administrator}">
