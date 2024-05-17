@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
-	@GetMapping("/")
+	@GetMapping("/top-menu")
 	public String index(Model model) {
 		model.addAttribute("msg", "Hello! Thymleaf!!");
 		return "main-menu";

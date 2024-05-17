@@ -26,7 +26,7 @@ public class UserController {
 	}
 
 	@GetMapping("/user/detail")
-	public String userDetail(Model model, @RequestParam(name = "id") Long id) throws SQLException {
+	public String userDetail(Model model, @RequestParam Long id) throws SQLException {
 		model.addAttribute("user", userService.getUserById(id));
 		return "user-detail";
 	}
@@ -82,7 +82,7 @@ public class UserController {
 	}
 
 	@GetMapping("/user/delete")
-	public String userDelete(Model model, @RequestParam(name = "id") Long id) throws SQLException {
+	public String userDelete(Model model, @RequestParam Long id) throws SQLException {
 		model.addAttribute("user", userService.getUserById(id));
 		return "user-delete-confirm";
 	}
