@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<title>商品一覧</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+
+<body>
+	<div><a href="/top-menu">メインメニュー</a></div>
+	<div><a href="/item/entry">商品登録</a></div>
+	<table>
+		<tr>
+			<th>操作</th>
+			<th>ID</th>
+			<th>商品名</th>
+			<th>単価</th>
+		</tr>
+		<th:block th:each="item : ${items}">
+			<tr>
+				<td><a href="/item/detail" th:href="@{/item/detail(id=${item.id})}">詳細</a></td>
+				<td th:text="${item.id}">999</td>
+				<td th:text="${item.name}">ダミー名</td>
+				<td th:text="${item.price}">100</td>
+			</tr>
+		</th:block>
+	</table>
+</body>
+
+</html>

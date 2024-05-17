@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<title>商品変更確認</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+
+<body>
+	<h1>商品変更確認</h1>
+	<div>変更します。よろしいですか？</div>
+	<table>
+		<tr>
+			<th>ID</th>
+			<td><span th:text="${itemFormDto.id}">999</span></td>
+		</tr>
+		<tr>
+			<th>商品名</th>
+			<td><span th:text="${itemFormDto.name}">テスト名</span></td>
+		</tr>
+		<tr>
+			<th>単価</th>
+			<td><span th:text="${itemFormDto.price}">false</span></td>
+		</tr>
+	</table>
+	<form action="#" th:action="@{/item/modify/complete}" method="post" th:object="${itemFormDto}" class="under-items">
+		<input type="hidden" th:field="*{id}">
+		<input type="hidden" th:field="*{name}">
+		<input type="hidden" th:field="*{price}">
+		<div><a href="item-modify.html"
+				th:href="@{/item/modify(id=${itemFormDto.id},name=${itemFormDto.name},price=${itemFormDto.price})}">戻る</a>
+			<input type="submit" value="変更">
+		</div>
+	</form>
+</body>
+
+</html>

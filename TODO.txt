@@ -1,9 +1,30 @@
-・ログインの実装（DBへの照会。今回パスワードは考慮しない）
+・商品テーブル設計
+ id
+ name
+ price
+・商品テーブル作成
+ create table item(id integer,name text,price integer,PRIMARY KEY (id));
+・商品テーブルデータ投入
+insert into item values(1,'オリジナルうちわ',300);
+insert into item values(2,'オリジナルTシャツ',1500);
+insert into item values(3,'オリジナル鉛筆６本セット',550);
+insert into item values(4,'HP ProDisplay P232',8500);
+
 ・ログインユーザ情報をセッションに保持する
 ・各画面でログイン判定を入れる。ログインしていない場合はログイン画面へ
 
+・ID取得する際はシーケンスから取得する
+・ユーザ登録時にユーザ名の重複チェック
 ・項目e-mailを追加
 ・項目生年月日を追加
 ・ボタンとリンクが入り混じっている画面がある。ボタンに統一する。
 ・トランザクション実装
 ・コネクションプールどうなっている？
+
+
+■sqlite3
+sqlite3 test1.db
+.exit
+SELECT name FROM sqlite_master WHERE type='table';
+insert into item values(
+PRAGMA table_info(user);

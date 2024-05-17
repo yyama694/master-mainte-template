@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8" />
+<title>商品登録</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+
+<body>
+	<form action="#" th:action="@{/item/entry/confirm}" method="post"
+		th:object="${itemFormDto}">
+		<h1>商品登録</h1>
+		<table>
+			<tr>
+				<th>ID</th>
+				<td><span th:text="*{id}">999</span><input type="hidden"
+					th:field="*{id}" value="999"></td>
+			</tr>
+			<tr>
+				<th>商品名</th>
+				<td>
+					<div id="name-errors" th:errors="*{name}" class="error-message"></div>
+					<input type="text" th:field="*{name}" value="テスト名">
+				</td>
+			</tr>
+			<tr>
+				<th>単価</th>
+				<td><input type="text" th:field="*{price}" value="500" /></td>
+			</tr>
+		</table>
+		<div class="under-items">
+			<a href="/item/list">戻る</a> <input type="submit" value="登録確認">
+		</div>
+	</form>
+</body>
+
+</html>

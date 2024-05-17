@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<title>商品詳細</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+
+<body>
+	<h1>商品詳細</h1>
+	<table>
+		<tr>
+			<th>ID</th>
+			<td><span th:text="${item.id}">999</span></td>
+		</tr>
+		<tr>
+			<th>商品名</th>
+			<td><span th:text="${item.name}">テスト名</span></td>
+		</tr>
+		<tr>
+			<th>単価</th>
+			<td><span th:text="${item.price}">100</span></td>
+		</tr>
+	</table>
+	<div class="under-items"><a href="item-list.html" th:href="@{/item/list}">商品一覧へ</a>
+		<a href="item-modify.html" th:href="@{/item/modify(id=${item.id})}">変更</a>
+		<a href="item-delete-confirm.html" th:href="@{/item/delete(id=${item.id})}">削除</a>
+	</div>
+</body>
+
+</html>

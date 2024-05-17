@@ -19,5 +19,6 @@ public interface UserDao {
 	public long maxId();
 	
 	public void entry(UserDomain userDomain);
-	
+
+	public UserDomain getUserByName(String name);
 }

@@ -1,50 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <title>ログイン</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        form {
-            border: 1px solid #ccc;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            background-color: #f9f9f9;
-        }
-        label, input {
-            display: block;
-            margin-bottom: 10px;
-            width: 100%;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #0056b3;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #003580;
-        }
-    </style>    
+<meta charset="utf-8" />
+<title>ログイン</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+}
+
+form {
+	border: 1px solid #ccc;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	background-color: #f9f9f9;
+}
+
+label, input {
+	display: block;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+button {
+	width: 100%;
+	padding: 10px;
+	background-color: #0056b3;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #003580;
+}
+</style>
 </head>
 <body>
-    <form action="/login/auth" method="post">
-        <label for="user-id">ユーザID:</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="password">パスワード:</label>
-        <input type="password" id="password" name="password" required>
-		パスワードは「pass」固定です。
-        <button type="submit">ログイン</button>
-    </form>
+	<form action="/login/auth" method="post">
+		<div th:if="${errorMessage}" class="error-message"
+			th:text="${errorMessage}"></div>
+		<label for="user-id">ユーザID:</label> <input type="text" id="name"
+			name="name" required> <label for="password">パスワード:</label> <input
+			type="password" id="password" name="password" required>
+		<p>パスワードは「pass」固定です。</p>
+		<button type="submit">ログイン</button>
+	</form>
 </body>
 </html>
