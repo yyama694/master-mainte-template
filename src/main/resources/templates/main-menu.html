@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <title>メインメニュー</title>
+<meta charset="utf-8" />
+<title>メインメニュー</title>
 </head>
 <body>
-<p><a href="/user/list">ユーザメンテナンス</a></p>
-<p><a href="/item/list">商品マスタメンテナンス</a></p>
+	<p th:if="${isAdmin}">
+		<a href="/user/list">ユーザメンテナンス</a>
+	</p>
+	<p>
+		<a href="/item/list">商品マスタメンテナンス</a>
+	</p>
+	<p>
+		<a href="/logout">ログアウト</a>
+	</p>
 </body>
 </html>

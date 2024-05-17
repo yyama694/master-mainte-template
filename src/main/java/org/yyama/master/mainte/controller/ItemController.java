@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.yyama.master.mainte.dto.ItemFormDto;
-import org.yyama.master.mainte.dto.UserFormDto;
 import org.yyama.master.mainte.service.ItemService;
 
 @Controller
